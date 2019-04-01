@@ -17,7 +17,7 @@ public class LinkedInLoginTest {
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
         emailField.sendKeys("ohta@i.ua");
-        passwordField.sendKeys("fghdfghd");
+        passwordField.sendKeys("");
         signInButton.click();
 
         WebElement profileNavigationItem = driver.findElement(By.xpath("//li[@id='profile-nav-item']"));
@@ -182,7 +182,7 @@ public class LinkedInLoginTest {
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
         emailField.sendKeys("ohta");
-        passwordField.sendKeys("fghdfghd");
+        passwordField.sendKeys("");
         signInButton.click();
 
         WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
@@ -207,7 +207,7 @@ public class LinkedInLoginTest {
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
         emailField.sendKeys("ohta@i.com.ua.ua.ru");
-        passwordField.sendKeys("fghdfghd");
+        passwordField.sendKeys("");
         signInButton.click();
 
         WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
@@ -231,7 +231,7 @@ public class LinkedInLoginTest {
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
         emailField.sendKeys("0502134675");
-        passwordField.sendKeys("fghdfghd");
+        passwordField.sendKeys("");
         signInButton.click();
 
         WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
@@ -255,7 +255,7 @@ public class LinkedInLoginTest {
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
         emailField.sendKeys("+38050");
-        passwordField.sendKeys("fghdfghd");
+        passwordField.sendKeys("");
         signInButton.click();
 
         WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
@@ -279,7 +279,7 @@ public class LinkedInLoginTest {
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
         emailField.sendKeys("+3805000427429846284782674234247462");
-        passwordField.sendKeys("fghdfghd");
+        passwordField.sendKeys("");
         signInButton.click();
 
         WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
