@@ -11,7 +11,7 @@ public class LinkedInExample {
         driver.get("https://www.linkedin.com/");
 
         String emailLogin = "ohta@i.ua";
-        String emailPass = "fghdfghd";
+        String emailPass = "";
         String verifyUrl = "https://www.linkedin.com/feed/";
         WebElement searchName = driver.findElement(By.xpath("//*[@id='login-email']"));
         searchName.sendKeys(emailLogin);
