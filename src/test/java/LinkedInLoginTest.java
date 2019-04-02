@@ -30,20 +30,12 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
-        WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
-        WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
-        WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("");
-        passwordField.sendKeys("");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        //Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("" , "");
 
-        WebElement logInHomePage = driver.findElement(By.xpath("//input[@id='login-submit']"));
-
-        logInHomePage.isDisplayed();
-        Assert.assertTrue(logInHomePage.isDisplayed(), "Home page is not displayed");
-
-        //Assert.assertEquals(driver.getTitle(), "LinkedIn: Войти или зарегистрироваться", "Home page title is wrong");
+       Assert.assertTrue(loginPage.isPageLoaded(), "Home page is not loaded");
 
         driver.quit();
     }
@@ -54,20 +46,12 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
-        WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
-        WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
-        WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("ohta@i.ua");
-        passwordField.sendKeys("");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        //Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("ohta@i.ua" , "");
 
-        WebElement logInHomePage = driver.findElement(By.xpath("//input[@id='login-submit']"));
-
-        logInHomePage.isDisplayed();
-        Assert.assertTrue(logInHomePage.isDisplayed(), "Home page is not displayed");
-
-        //Assert.assertEquals(driver.getTitle(), "LinkedIn: Войти или зарегистрироваться", "Home page title is wrong");
+        Assert.assertTrue(loginPage.isPageLoaded(), "Home page is not loaded");
 
         driver.quit();
     }
@@ -78,20 +62,12 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
-        WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
-        WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
-        WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("");
-        passwordField.sendKeys("ohta@i.ua");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        //Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("" , "fghdfghd");
 
-        WebElement logInHomePage = driver.findElement(By.xpath("//input[@id='login-submit']"));
-
-        logInHomePage.isDisplayed();
-        Assert.assertTrue(logInHomePage.isDisplayed(), "Home page is not displayed");
-
-        //Assert.assertEquals(driver.getTitle(), "LinkedIn: Войти или зарегистрироваться", "Home page title is wrong");
+        Assert.assertTrue(loginPage.isPageLoaded(), "Home page is not loaded");
 
         driver.quit();
     }
@@ -102,18 +78,16 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
-        WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
-        WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
-        WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("ohta@i.ua");
-        passwordField.sendKeys("Test1234");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("ohta@i.ua" , "fghdfghd1234");
 
-        WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-password']"));
-        String logInErrorMessageString = logInErrorMessage.getText();
+        ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(logInErrorMessageString, "Это неверный пароль. Повторите попытку или измените пароль.",
+        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
+
+        Assert.assertEquals(errorPage.isErrorPasswordMessage(), "Это неверный пароль. Повторите попытку или измените пароль.",
                 "Successful login with wrong password ");
 
         driver.quit();
@@ -125,18 +99,16 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
-        WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
-        WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
-        WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("ohta@i.ua");
-        passwordField.sendKeys("1");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("ohta@i.ua" , "1");
 
-        WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-password']"));
-        String logInErrorMessageString = logInErrorMessage.getText();
+        ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(logInErrorMessageString, "Это неверный пароль. Повторите попытку или измените пароль.",
+        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
+
+        Assert.assertEquals(errorPage.isErrorPasswordMessage(), "Это неверный пароль. Повторите попытку или измените пароль.",
                 "Successful login with wrong password ");
 
         driver.quit();
@@ -148,18 +120,16 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
-        WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
-        WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
-        WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("ohta@i.ua");
-        passwordField.sendKeys("Test1234567890123456789012345678901234567890123456789012345678901234567890");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("ohta@i.ua" , "Test2148197469832670286708640q02386402864720864702");
 
-        WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-password']"));
-        String logInErrorMessageString = logInErrorMessage.getText();
+        ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(logInErrorMessageString, "Это неверный пароль. Повторите попытку или измените пароль.",
+        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
+
+        Assert.assertEquals(errorPage.isErrorPasswordMessage(), "Это неверный пароль. Повторите попытку или измените пароль.",
                 "Successful login with wrong password ");
 
         driver.quit();
@@ -171,18 +141,16 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
-        WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
-        WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
-        WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("ohta");
-        passwordField.sendKeys("fghdfghd");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("ohta" , "fghdfghd");
 
-        WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
-        String logInErrorMessageString = logInErrorMessage.getText();
+        ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(logInErrorMessageString, "Укажите действительный адрес эл. почты.",
+        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
+
+        Assert.assertEquals(errorPage.isErrorLogInMessage(), "Укажите действительный адрес эл. почты.",
                 "Successful login with wrong email");
 
         driver.quit();
@@ -196,18 +164,20 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
+
         WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
         WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("ohta@i.com.ua.ua.ru");
-        passwordField.sendKeys("fghdfghd");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("ohta@ua.ru.ua.ua.ia" , "fghdfghd");
 
-        WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
-        String logInErrorMessageString = logInErrorMessage.getText();
+        ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(logInErrorMessageString, "Этот адрес эл. почты не зарегистрирован в LinkedIn. Повторите попытку.",
+        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
+
+        Assert.assertEquals(errorPage.isErrorLogInMessage(), "Этот адрес эл. почты не зарегистрирован в LinkedIn. Повторите попытку.",
                 "Successful login with wrong email");
 
         driver.quit();
@@ -220,18 +190,20 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
+
         WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
         WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("0502134675");
-        passwordField.sendKeys("fghdfghd");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("0501236475" , "fghdfghd");
 
-        WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
-        String logInErrorMessageString = logInErrorMessage.getText();
+        ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(logInErrorMessageString, "Обязательно включите в номер значок «+» и код своей страны.",
+        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
+
+        Assert.assertEquals(errorPage.isErrorLogInMessage(), "Обязательно включите в номер значок «+» и код своей страны.",
                 "Successful login with wrong phone number");
 
         driver.quit();
@@ -244,18 +216,20 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
+
         WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
         WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("+38050");
-        passwordField.sendKeys("fghdfghd");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("+380501" , "fghdfghd");
 
-        WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
-        String logInErrorMessageString = logInErrorMessage.getText();
+        ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(logInErrorMessageString, "Этот номер телефона не зарегистрирован в LinkedIn. Повторите попытку.",
+        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
+
+        Assert.assertEquals(errorPage.isErrorLogInMessage(), "Этот номер телефона не зарегистрирован в LinkedIn. Повторите попытку.",
                 "Successful login with wrong phone number");
 
         driver.quit();
@@ -268,18 +242,20 @@ public class LinkedInLoginTest {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
+
         WebElement emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
         WebElement passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
         WebElement signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
 
-        emailField.sendKeys("+3805000427429846284782674234247462");
-        passwordField.sendKeys("fghdfghd");
-        signInButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        loginPage.login("+380501982365479283560295610896392865205967095376209260298639" , "fghdfghd");
 
-        WebElement logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
-        String logInErrorMessageString = logInErrorMessage.getText();
+        ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(logInErrorMessageString, "Этот номер телефона не зарегистрирован в LinkedIn. Повторите попытку.",
+        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
+
+        Assert.assertEquals(errorPage.isErrorLogInMessage(), "Этот номер телефона не зарегистрирован в LinkedIn. Повторите попытку.",
                 "Successful login with wrong phone number");
 
         driver.quit();

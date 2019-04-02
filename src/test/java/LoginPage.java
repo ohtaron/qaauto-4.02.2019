@@ -24,8 +24,8 @@ public class LoginPage {
         signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
     }
 
-    public void login(String userEmail, String userPassword){
-        emailField.sendKeys(userEmail);
+    public void login(String userEmailOrPhone, String userPassword){
+        emailField.sendKeys(userEmailOrPhone);
         passwordField.sendKeys(userPassword);
         signInButton.click();
     }
