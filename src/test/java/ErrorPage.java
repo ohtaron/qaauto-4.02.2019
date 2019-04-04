@@ -4,17 +4,17 @@ import org.openqa.selenium.WebElement;
 
 public class ErrorPage {
 
-    WebDriver driver;
+    private WebDriver driver;
 
-    WebElement errorPasswordMessage;
-    WebElement logInErrorMessage;
+    private WebElement errorPasswordMessage;
+    private WebElement logInErrorMessage;
 
     public ErrorPage(WebDriver driver) {
         this.driver = driver;
         initElements();
     }
 
-    public void initElements() {
+    private void initElements() {
         errorPasswordMessage = driver.findElement(By.xpath("//div[@id='error-for-password']"));
         logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
     }
