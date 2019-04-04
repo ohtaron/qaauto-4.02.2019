@@ -85,8 +85,6 @@ public class LinkedInLoginTest {
 
         ErrorPage errorPage = new ErrorPage(driver);
 
-        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
-
         Assert.assertEquals(errorPage.isErrorPasswordMessage(), "Это неверный пароль. Повторите попытку или измените пароль.",
                 "Successful login with wrong password ");
 
@@ -105,8 +103,6 @@ public class LinkedInLoginTest {
         loginPage.login("ohta@i.ua" , "1");
 
         ErrorPage errorPage = new ErrorPage(driver);
-
-        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
 
         Assert.assertEquals(errorPage.isErrorPasswordMessage(), "Это неверный пароль. Повторите попытку или измените пароль.",
                 "Successful login with wrong password ");
@@ -127,8 +123,6 @@ public class LinkedInLoginTest {
 
         ErrorPage errorPage = new ErrorPage(driver);
 
-        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
-
         Assert.assertEquals(errorPage.isErrorPasswordMessage(), "Это неверный пароль. Повторите попытку или измените пароль.",
                 "Successful login with wrong password ");
 
@@ -147,8 +141,6 @@ public class LinkedInLoginTest {
         loginPage.login("ohta" , "fghdfghd");
 
         ErrorPage errorPage = new ErrorPage(driver);
-
-        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
 
         Assert.assertEquals(errorPage.isErrorLogInMessage(), "Укажите действительный адрес эл. почты.",
                 "Successful login with wrong email");
@@ -175,8 +167,6 @@ public class LinkedInLoginTest {
 
         ErrorPage errorPage = new ErrorPage(driver);
 
-        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
-
         Assert.assertEquals(errorPage.isErrorLogInMessage(), "Этот адрес эл. почты не зарегистрирован в LinkedIn. Повторите попытку.",
                 "Successful login with wrong email");
 
@@ -200,8 +190,6 @@ public class LinkedInLoginTest {
         loginPage.login("0501236475" , "fghdfghd");
 
         ErrorPage errorPage = new ErrorPage(driver);
-
-        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
 
         Assert.assertEquals(errorPage.isErrorLogInMessage(), "Обязательно включите в номер значок «+» и код своей страны.",
                 "Successful login with wrong phone number");
@@ -227,8 +215,6 @@ public class LinkedInLoginTest {
 
         ErrorPage errorPage = new ErrorPage(driver);
 
-        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
-
         Assert.assertEquals(errorPage.isErrorLogInMessage(), "Этот номер телефона не зарегистрирован в LinkedIn. Повторите попытку.",
                 "Successful login with wrong phone number");
 
@@ -252,8 +238,6 @@ public class LinkedInLoginTest {
         loginPage.login("+380501982365479283560295610896392865205967095376209260298639" , "fghdfghd");
 
         ErrorPage errorPage = new ErrorPage(driver);
-
-        //Assert.assertTrue(errorPage.isPageLoaded(), "Home page is not loaded");
 
         Assert.assertEquals(errorPage.isErrorLogInMessage(), "Этот номер телефона не зарегистрирован в LinkedIn. Повторите попытку.",
                 "Successful login with wrong phone number");
