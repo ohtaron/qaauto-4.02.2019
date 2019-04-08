@@ -8,6 +8,7 @@ public class ErrorPage {
 
     private WebElement errorPasswordMessage;
     private WebElement logInErrorMessage;
+    private WebElement errorMessage;
 
     public ErrorPage(WebDriver driver) {
         this.driver = driver;
@@ -17,6 +18,7 @@ public class ErrorPage {
     private void initElements() {
         errorPasswordMessage = driver.findElement(By.xpath("//div[@id='error-for-password']"));
         logInErrorMessage = driver.findElement(By.xpath("//div[@id='error-for-username']"));
+        errorMessage = driver.findElement(By.xpath("//h1[@class='header__content__heading']"));
     }
 
 
@@ -26,5 +28,9 @@ public class ErrorPage {
 
     public String isErrorLogInMessage() {
         return logInErrorMessage.getText();
+    }
+
+    public String isErrorMessage() {
+        return errorMessage.getText();
     }
 }
