@@ -28,8 +28,9 @@ public class LinkedInLoginTest {
     @DataProvider
     public Object[][] validDataProvider() {
         return new Object[][]{
-                { "ohta@i.ua", "fghdfghd" },
-                { "ohTA@i.ua", "fghdfghd" }
+                //{ "ohta@i.ua", "fghdfghd" },
+                //{ "ohTA@i.ua", "fghdfghd" },
+                { " ohTA@i.ua ", "fghdfghd" }
         };
     }
 
@@ -39,9 +40,9 @@ public class LinkedInLoginTest {
 
 
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        loginPage.login(userEmail , userPassword);
+        HomePage homePage = loginPage.login(userEmail , userPassword);
 
-        HomePage homePage = new HomePage(driver);
+        //HomePage homePage = new HomePage(driver);
 
         Assert.assertTrue(homePage.isPageLoaded(), "Home page is not loaded");
 
@@ -73,9 +74,9 @@ public class LinkedInLoginTest {
     @DataProvider
     public Object[][] wrongDataProvider() {
         return new Object[][]{
-                { "ohta@i.ua", "fghdfghd1234" },
-                { "ohta@i.ua", "1" },
-                { "ohta@i.ua", "Test2148197469832670286708640q02386402864720864702" },
+                { "ohta@i.ua", "fghdfghd1234", "", "Это неверный пароль. Повторите попытку или измените пароль." },
+                { "ohta@@i.ua", "fghdfghd", "Этот адрес эл. почты не зарегистрирован в LinkedIn. Повторите попытку.", "" },
+                /*{ "ohta@i.ua", "Test2148197469832670286708640q02386402864720864702" },
                 { "ohta", "fghdfghd" },
                 { "ohta!", "fghdfghd" },
                 { "ohta@ua.ru.ua.ua.ia", "fghdfghd" },
@@ -83,12 +84,12 @@ public class LinkedInLoginTest {
                 { "0501236475", "fghdfghd" },
                 { "438", "fghdfghd" },
                 { "+380501", "fghdfghd" },
-                { "+380501982365479283560295610896392865205967095376209260298639", "fghdfghd" }
+                { "+380501982365479283560295610896392865205967095376209260298639", "fghdfghd" }*/
         };
     }
 
     @Test(dataProvider = "wrongDataProvider")
-    public void negativeWithWrongValuesTest(String userEmail, String userPassword) {
+    public void negativeWithWrongValuesTest(String userEmail, String userPassword, String emailValidation, String passwordValidation) {
 
 
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
@@ -96,8 +97,13 @@ public class LinkedInLoginTest {
 
         ErrorPage errorPage = new ErrorPage(driver);
 
-        Assert.assertEquals(errorPage.isErrorMessage(), "Мы рады видеть вас снова!",
+        //Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+
+        Assert.assertEquals(errorPage.isErrorLogInMessage(), emailValidation,
                 "Successful login with wrong password ");
+
+        Assert.assertEquals(errorPage.isErrorPasswordMessage(), passwordValidation,
+                "Successful login with wrong email ");
 
 
     }
