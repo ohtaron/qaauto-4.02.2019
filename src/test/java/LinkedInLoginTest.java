@@ -40,7 +40,7 @@ public class LinkedInLoginTest {
 
 
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        HomePage homePage = loginPage.login(userEmail , userPassword);
+        HomePage homePage = loginPage.homePageLogin(userEmail , userPassword);
 
         //HomePage homePage = new HomePage(driver);
 
@@ -53,8 +53,8 @@ public class LinkedInLoginTest {
     public Object[][] emptyValuesDataProvider() {
         return new Object[][]{
                 { "ohta@i.ua", "" },
-                { "", "fghdfghd" },
-                { "", "" }
+                //{ "", "fghdfghd" },
+                //{ "", "" }
         };
     }
 
@@ -63,7 +63,7 @@ public class LinkedInLoginTest {
 
 
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        loginPage.login(userEmail , userPassword);
+        loginPage.loginPageLogin(userEmail , userPassword);
 
        Assert.assertTrue(loginPage.isPageLoaded(), "Login page is not loaded");
 
@@ -75,7 +75,7 @@ public class LinkedInLoginTest {
     public Object[][] wrongDataProvider() {
         return new Object[][]{
                 { "ohta@i.ua", "fghdfghd1234", "", "Это неверный пароль. Повторите попытку или измените пароль." },
-                { "ohta@@i.ua", "fghdfghd", "Этот адрес эл. почты не зарегистрирован в LinkedIn. Повторите попытку.", "" },
+                //{ "ohta@@i.ua", "fghdfghd", "Этот адрес эл. почты не зарегистрирован в LinkedIn. Повторите попытку.", "" },
                 /*{ "ohta@i.ua", "Test2148197469832670286708640q02386402864720864702" },
                 { "ohta", "fghdfghd" },
                 { "ohta!", "fghdfghd" },
@@ -93,9 +93,9 @@ public class LinkedInLoginTest {
 
 
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        loginPage.login(userEmail, userPassword);
+        ErrorPage errorPage = loginPage.errorPageLogin(userEmail, userPassword);
 
-        ErrorPage errorPage = new ErrorPage(driver);
+        //ErrorPage errorPage = new ErrorPage(driver);
 
         //Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
 

@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
@@ -22,13 +23,25 @@ public class LoginPage {
         signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
     }
 
-    public HomePage login(String userEmailOrPhone, String userPassword){
+    public HomePage homePageLogin(String userEmailOrPhone, String userPassword){
         emailField.sendKeys(userEmailOrPhone);
         passwordField.sendKeys(userPassword);
         signInButton.click();
         return new HomePage(driver);
     }
 
+    public void loginPageLogin(String userEmailOrPhone, String userPassword){
+        emailField.sendKeys(userEmailOrPhone);
+        passwordField.sendKeys(userPassword);
+        signInButton.click();
+    }
+
+    public ErrorPage errorPageLogin(String userEmailOrPhone, String userPassword){
+        emailField.sendKeys(userEmailOrPhone);
+        passwordField.sendKeys(userPassword);
+        signInButton.click();
+        return new ErrorPage(driver);
+    }
 
     public boolean isPageLoaded() {
         return signInButton.isDisplayed();
