@@ -40,7 +40,7 @@ public class LinkedInLoginTest {
 
 
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        HomePage homePage = loginPage.homePageLogin(userEmail , userPassword);
+        HomePage homePage = loginPage.login(userEmail , userPassword);
 
         //HomePage homePage = new HomePage(driver);
 
@@ -63,9 +63,9 @@ public class LinkedInLoginTest {
 
 
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        loginPage.loginPageLogin(userEmail , userPassword);
+        LoginPage newLoginPage = loginPage.login(userEmail , userPassword);
 
-       Assert.assertTrue(loginPage.isPageLoaded(), "Login page is not loaded");
+       Assert.assertTrue(newLoginPage.isPageLoaded(), "Login page is not loaded");
 
 
     }
@@ -93,7 +93,7 @@ public class LinkedInLoginTest {
 
 
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        ErrorPage errorPage = loginPage.errorPageLogin(userEmail, userPassword);
+        ErrorPage errorPage = loginPage.login(userEmail, userPassword);
 
         //ErrorPage errorPage = new ErrorPage(driver);
 

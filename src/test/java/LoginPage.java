@@ -1,46 +1,36 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
     private WebDriver driver;
 
-
+    @FindBy(xpath = "//input[@id='login-email']")
     private WebElement emailField;
+    @FindBy(xpath = "//input[@id='login-password']")
     private WebElement passwordField;
+    @FindBy(xpath = "//input[@id='login-submit']")
     private WebElement signInButton;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        initElements();
+        PageFactory.initElements(driver, this);
     }
 
-    private void initElements() {
-        emailField = driver.findElement(By.xpath("//input[@id='login-email']"));
-        passwordField = driver.findElement(By.xpath("//input[@id='login-password']"));
-        signInButton = driver.findElement(By.xpath("//input[@id='login-submit']"));
-    }
-
-    public HomePage homePageLogin(String userEmailOrPhone, String userPassword){
+    public <GenericPage> GenericPage login(String userEmailOrPhone, String userPassword){
         emailField.sendKeys(userEmailOrPhone);
         passwordField.sendKeys(userPassword);
         signInButton.click();
-        return new HomePage(driver);
-    }
-
-    public void loginPageLogin(String userEmailOrPhone, String userPassword){
-        emailField.sendKeys(userEmailOrPhone);
-        passwordField.sendKeys(userPassword);
-        signInButton.click();
-    }
-
-    public ErrorPage errorPageLogin(String userEmailOrPhone, String userPassword){
-        emailField.sendKeys(userEmailOrPhone);
-        passwordField.sendKeys(userPassword);
-        signInButton.click();
-        return new ErrorPage(driver);
+        if(driver.getCurrentUrl().contains("/feed")) {
+            return (GenericPage) PageFactory.initElements(driver, HomePage.class);
+        } if (driver.getCurrentUrl().contains("/login-submit")) {
+            return (GenericPage) new ErrorPage(driver);
+        } else {
+            return (GenericPage) new LoginPage(driver);
+        }
     }
 
     public boolean isPageLoaded() {
