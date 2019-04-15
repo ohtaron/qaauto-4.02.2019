@@ -26,8 +26,6 @@ public class LoginPage {
         signInButton.click();
         if(driver.getCurrentUrl().contains("/feed")) {
             return (GenericPage) PageFactory.initElements(driver, HomePage.class);
-        } if (driver.getCurrentUrl().contains("/login-submit")) {
-            return (GenericPage) new ErrorPage(driver);
         } else {
             return (GenericPage) new LoginPage(driver);
         }

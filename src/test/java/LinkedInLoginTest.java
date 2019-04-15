@@ -1,12 +1,14 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class LinkedInLoginTest {
 
@@ -18,19 +20,18 @@ public class LinkedInLoginTest {
         driver = new ChromeDriver();
         driver.get("https://www.linkedin.com/");
         loginPage = new LoginPage(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
     }
 
-    @AfterMethod
-    public void afterMethod() {
-        driver.quit();
-    }
+    //@AfterMethod
+    //public void afterMethod() {
+      //  driver.quit();
+    //}
 
     @DataProvider
     public Object[][] validDataProvider() {
         return new Object[][]{
-                //{ "ohta@i.ua", "fghdfghd" },
-                //{ "ohTA@i.ua", "fghdfghd" },
-                { " ohTA@i.ua ", "fghdfghd" }
+                { "ohta@i.ua", "fghdfghd" }
         };
     }
 
@@ -47,64 +48,44 @@ public class LinkedInLoginTest {
         Assert.assertTrue(homePage.isPageLoaded(), "Home page is not loaded");
 
 
-    }
 
-    @DataProvider
-    public Object[][] emptyValuesDataProvider() {
-        return new Object[][]{
-                { "ohta@i.ua", "" },
-                //{ "", "fghdfghd" },
-                //{ "", "" }
-        };
-    }
-
-    @Test (dataProvider = "emptyValuesDataProvider")
-    public void negativeWithEmptyValuesTest(String userEmail, String userPassword) {
+        SearchPage searchPage = new SearchPage(driver);
 
 
-        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        LoginPage newLoginPage = loginPage.login(userEmail , userPassword);
+        String searchTerm = "HR";
+        /*WebElement searchField = driver.findElement(By.xpath("//input[@type='text']"));
+        searchField.sendKeys(searchTerm);
+        searchField.sendKeys((Keys.ENTER));*/
 
-       Assert.assertTrue(newLoginPage.isPageLoaded(), "Login page is not loaded");
-
-
-    }
-
-
-    @DataProvider
-    public Object[][] wrongDataProvider() {
-        return new Object[][]{
-                { "ohta@i.ua", "fghdfghd1234", "", "Это неверный пароль. Повторите попытку или измените пароль." },
-                //{ "ohta@@i.ua", "fghdfghd", "Этот адрес эл. почты не зарегистрирован в LinkedIn. Повторите попытку.", "" },
-                /*{ "ohta@i.ua", "Test2148197469832670286708640q02386402864720864702" },
-                { "ohta", "fghdfghd" },
-                { "ohta!", "fghdfghd" },
-                { "ohta@ua.ru.ua.ua.ia", "fghdfghd" },
-                { "ohta@", "fghdfghd" },
-                { "0501236475", "fghdfghd" },
-                { "438", "fghdfghd" },
-                { "+380501", "fghdfghd" },
-                { "+380501982365479283560295610896392865205967095376209260298639", "fghdfghd" }*/
-        };
-    }
-
-    @Test(dataProvider = "wrongDataProvider")
-    public void negativeWithWrongValuesTest(String userEmail, String userPassword, String emailValidation, String passwordValidation) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
-        Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
-        ErrorPage errorPage = loginPage.login(userEmail, userPassword);
 
-        //ErrorPage errorPage = new ErrorPage(driver);
+        Assert.assertTrue(searchPage.searchPageLoaded(), "Search page is not loaded");
 
-        //Assert.assertTrue(loginPage.isPageLoaded(), "Login page was not loaded.");
+        //Assert.assertTrue(searchPage.isPageLoaded(), "Home page is not loaded");
 
-        Assert.assertEquals(errorPage.isErrorLogInMessage(), emailValidation,
-                "Successful login with wrong password ");
 
-        Assert.assertEquals(errorPage.isErrorPasswordMessage(), passwordValidation,
-                "Successful login with wrong email ");
 
+        List<WebElement> searchResults = driver.findElements(By.xpath("//div[@class='search-result__info pt3 pb4 ph0']"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        System.out.println(searchResults.size());
+
+        for (WebElement searchResult : searchResults) {
+            String searchResultString = searchResult.getText();
+            System.out.println(searchResult.getText());
+            //System.out.println(searchResultString);
+
+            if (searchResultString.contains(searchTerm)) {
+                System.out.println("SearchTerm found");
+            } else {
+                System.out.println("SearchTerm not found");
+            }
+        }
 
     }
 
